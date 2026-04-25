@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FRTV - Fast Response TV</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>FRTV - Fast Response TV</h1>
+    
+    <div class="section">
+        <h2>Encode Image</h2>
+        <form id="encode-form">
+            <div class="input-group">
+                <label>Select Image:</label>
+                <input type="file" id="image-input" accept="image/*">
+            </div>
+            <div class="input-group">
+                <label>Callsign:</label>
+                <input type="text" id="callsign-input" placeholder="e.g. W1AW">
+            </div>
+            <div class="input-group">
+                <label>Overlay Message:</label>
+                <input type="text" id="message-input" placeholder="e.g. Hello from New York!">
+            </div>
+            <div class="input-group">
+                <label>Quality:</label>
+                <select id="quality-select">
+                    <option value="ultra_low">Ultra-Low (80x60 - Rocket Fast)</option>
+                    <option value="low">Low (160x120 - Very Fast)</option>
+                    <option value="medium" selected>Medium (320x240 - Standard)</option>
+                    <option value="high">High (640x480 - Crisp)</option>
+                    <option value="ultra_high">Ultra-High (1280x960 - HD Slow)</option>
+                </select>
+            </div>
+            <button type="submit">Encode to Audio</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="section">
+        <h2>Live Decode & Play</h2>
+        <input type="file" id="audio-input" accept="audio/wav">
+        <button id="play-decode-btn">Play & Decode Live</button>
+    </div>
+
+    <hr>
+
+    <div id="results">
+        <h2>Live Display</h2>
+        <div id="progress-container" style="width: 320px; background: #eee; height: 10px; margin-bottom: 5px;">
+            <div id="progress-bar" style="width: 0%; background: #4CAF50; height: 100%;"></div>
+        </div>
+        <p id="eta-text" style="font-size: 0.8rem; margin-bottom: 10px;">ETA: --:--</p>
+        
+        <canvas id="live-canvas" width="320" height="240" style="border: 1px solid black; background: #eee;"></canvas>
+        <p id="status">Status: Idle</p>
+    </div>
+
+    <style>
+        .input-group { margin-bottom: 10px; }
+        label { display: inline-block; width: 120px; font-weight: bold; }
+    </style>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
